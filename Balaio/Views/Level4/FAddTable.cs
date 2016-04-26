@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Balaio.Controllers;
+using Balaio.Controllers.Utility;
 
 namespace Balaio.Views
 {
@@ -74,10 +75,20 @@ namespace Balaio.Views
             DataGridViewCheckBoxColumn primaryKey = new DataGridViewCheckBoxColumn();
             primaryKey.HeaderText = "Primary Key";
             primaryKey.Name = "primaryKey";
+            primaryKey.TrueValue = "true";
+            primaryKey.IndeterminateValue = "false";
+            primaryKey.FalseValue = "false";
+            primaryKey.ThreeState = false;
+            primaryKey.ValueType = typeof(string);
 
             DataGridViewCheckBoxColumn allowNull = new DataGridViewCheckBoxColumn();
             allowNull.HeaderText = "Allow Null";
             allowNull.Name = "allowNull";
+            allowNull.TrueValue = "true";
+            allowNull.IndeterminateValue = "false";
+            allowNull.FalseValue = "false";
+            allowNull.ThreeState = false;
+            allowNull.ValueType = typeof(string);
 
             dataGridViewColumns.Columns.Add(columnName);
             dataGridViewColumns.Columns.Add(typeOfData);
@@ -103,14 +114,14 @@ namespace Balaio.Views
                 MessageBox.Show("Add at least one Column!", "Empty Table!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            createTable();
 
+            createTable();
         }
 
         private void createTable()
         {
-            DataTable dt = dataGridViewColumns.DataSource as DataTable;
-            int x = 2;
+            DataTable dt = CUtil_DataGridView.DataGridViewToDataTable(this.dataGridViewColumns);
+
         }
 
 

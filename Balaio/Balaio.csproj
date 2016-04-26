@@ -66,53 +66,54 @@
   <ItemGroup>
     <Compile Include="Controllers\CControlData.cs" />
     <Compile Include="Controllers\Utility\CUtil_DataGridView.cs" />
+    <Compile Include="Controllers\Utility\CUtil_IO.cs" />
     <Compile Include="Controllers\Utility\CUtil_ListView.cs" />
     <Compile Include="Models\CDataAccess.cs" />
-    <Compile Include="Views\FAddTable.cs">
+    <Compile Include="Views\Level4\FAddTable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FAddTable.Designer.cs">
+    <Compile Include="Views\Level4\FAddTable.Designer.cs">
       <DependentUpon>FAddTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FConfigServer.cs">
+    <Compile Include="Views\Level2 - Configs\FConfigServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FConfigServer.Designer.cs">
+    <Compile Include="Views\Level2 - Configs\FConfigServer.Designer.cs">
       <DependentUpon>FConfigServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FDataBaseManipulation.cs">
+    <Compile Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FDataBaseManipulation.Designer.cs">
+    <Compile Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.Designer.cs">
       <DependentUpon>FDataBaseManipulation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FLoadConfig.cs">
+    <Compile Include="Views\Level2 - Configs\FLoadConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FLoadConfig.Designer.cs">
+    <Compile Include="Views\Level2 - Configs\FLoadConfig.Designer.cs">
       <DependentUpon>FLoadConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FMainBalaio.cs">
+    <Compile Include="Views\Main\FMainBalaio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FMainBalaio.Designer.cs">
+    <Compile Include="Views\Main\FMainBalaio.Designer.cs">
       <DependentUpon>FMainBalaio.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\FAddTable.resx">
+    <EmbeddedResource Include="Views\Level4\FAddTable.resx">
       <DependentUpon>FAddTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FConfigServer.resx">
+    <EmbeddedResource Include="Views\Level2 - Configs\FConfigServer.resx">
       <DependentUpon>FConfigServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FDataBaseManipulation.resx">
+    <EmbeddedResource Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.resx">
       <DependentUpon>FDataBaseManipulation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FLoadConfig.resx">
+    <EmbeddedResource Include="Views\Level2 - Configs\FLoadConfig.resx">
       <DependentUpon>FLoadConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FMainBalaio.resx">
+    <EmbeddedResource Include="Views\Main\FMainBalaio.resx">
       <DependentUpon>FMainBalaio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -154,6 +155,7 @@
   <ItemGroup>
     <None Include="Resources\plus_2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

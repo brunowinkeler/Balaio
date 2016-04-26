@@ -49,7 +49,7 @@ namespace Balaio.Views
         #endregion
 
 
-        #region Events
+        #region Buttons' Events
 
         private void butConfig_Click(object sender, EventArgs e)
         {
@@ -67,6 +67,11 @@ namespace Balaio.Views
             }
             else
                 dataControl.StringConnection = null;
+        }
+
+        private void butLoadSave_Click(object sender, EventArgs e)
+        {
+
         }
 
 
@@ -107,12 +112,6 @@ namespace Balaio.Views
 
         #endregion
 
-        private void butLoadSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
 
     }
 }
