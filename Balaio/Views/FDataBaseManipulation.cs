@@ -32,7 +32,7 @@ namespace Balaio.Views
             dataControl = c;
             this.Text = "Data Tables from " + dataControl.DataBaseName;
 
-            iniListViewTables();
+            iniDataGridTable();
         }
 
         #endregion
@@ -40,21 +40,10 @@ namespace Balaio.Views
 
         #region Private Methods - User-defined
 
-        private void iniListViewTables()
+        private void iniDataGridTable()
         {
-            listViewTables.Clear();
-            listViewTables.Columns.Add("Tables");
-
-            List<string> listTables = dataControl.GetTablesNames();
-            if (listTables != null)
-            {
-                foreach (var item in listTables)
-                {
-                    listViewTables.Items.Add(item);
-                }
-            }
-
-            listViewTables.CheckBoxes = true;
+            DataTable dt = dataControl.GetTablesNames();
+            dataGridTable.DataSource = dt;
         }
 
 
@@ -65,8 +54,8 @@ namespace Balaio.Views
 
         private void butDeleteTable_Click(object sender, EventArgs e)
         {
-            dataControl.ExcludeTables(CUtil_ListView.getListViewItemsChecked(this.listViewTables));
-            iniListViewTables();
+            //dataControl.ExcludeTables(CUtil_ListView.getListViewItemsChecked(this.listViewTables));
+            iniDataGridTable();
         }
 
         private void butAddTable_Click(object sender, EventArgs e)
@@ -76,5 +65,7 @@ namespace Balaio.Views
         }
 
         #endregion
+
+
     }
 }

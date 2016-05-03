@@ -65,55 +65,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CControlData.cs" />
+    <Compile Include="Controllers\Utility\CUtil_ConnectionDataBase.cs" />
     <Compile Include="Controllers\Utility\CUtil_DataGridView.cs" />
     <Compile Include="Controllers\Utility\CUtil_IO.cs" />
     <Compile Include="Controllers\Utility\CUtil_ListView.cs" />
     <Compile Include="Models\CDataAccess.cs" />
-    <Compile Include="Views\Level4\FAddTable.cs">
+    <Compile Include="Views\FTreeViewTables.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Level4\FAddTable.Designer.cs">
+    <Compile Include="Views\FTreeViewTables.Designer.cs">
+      <DependentUpon>FTreeViewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FAddTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FAddTable.Designer.cs">
       <DependentUpon>FAddTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Level2 - Configs\FConfigServer.cs">
+    <Compile Include="Views\FConfigServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Level2 - Configs\FConfigServer.Designer.cs">
+    <Compile Include="Views\FConfigServer.Designer.cs">
       <DependentUpon>FConfigServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.cs">
+    <Compile Include="Views\FDataBaseManipulation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.Designer.cs">
+    <Compile Include="Views\FDataBaseManipulation.Designer.cs">
       <DependentUpon>FDataBaseManipulation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Level2 - Configs\FLoadConfig.cs">
+    <Compile Include="Views\FLoadConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Level2 - Configs\FLoadConfig.Designer.cs">
+    <Compile Include="Views\FLoadConfig.Designer.cs">
       <DependentUpon>FLoadConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\FMainBalaio.cs">
+    <Compile Include="Views\FMainBalaio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Main\FMainBalaio.Designer.cs">
+    <Compile Include="Views\FMainBalaio.Designer.cs">
       <DependentUpon>FMainBalaio.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\Level4\FAddTable.resx">
+    <EmbeddedResource Include="Views\FTreeViewTables.resx">
+      <DependentUpon>FTreeViewTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FAddTable.resx">
       <DependentUpon>FAddTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Level2 - Configs\FConfigServer.resx">
+    <EmbeddedResource Include="Views\FConfigServer.resx">
       <DependentUpon>FConfigServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Level3 - DataBaseManipulation\FDataBaseManipulation.resx">
+    <EmbeddedResource Include="Views\FDataBaseManipulation.resx">
       <DependentUpon>FDataBaseManipulation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Level2 - Configs\FLoadConfig.resx">
+    <EmbeddedResource Include="Views\FLoadConfig.resx">
       <DependentUpon>FLoadConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Main\FMainBalaio.resx">
+    <EmbeddedResource Include="Views\FMainBalaio.resx">
       <DependentUpon>FMainBalaio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

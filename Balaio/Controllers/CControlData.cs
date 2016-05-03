@@ -16,6 +16,7 @@ namespace Balaio.Controllers
         #region Attributes
 
         private string strConnection;
+        private string tablesSchema;
         private string serverName;
         private string dataBaseName;
         private string userName;
@@ -68,6 +69,12 @@ namespace Balaio.Controllers
             get { return userName; }
         }
 
+        [Browsable(false)]
+        public string TablesSchema
+        {
+            get { return tablesSchema; }
+        }
+
         #endregion
 
 
@@ -117,22 +124,18 @@ namespace Balaio.Controllers
 
         #region Public Methods - User-defined
 
+        #region TEST CONNECTION
+
         public bool TestConnection(string conn)
         {
             StringConnection = conn;
             return cdata.DataAccessOK;
         }
 
-        public List<string> GetTablesNames()
-        {
-            List<string> listTables = new List<string>();
-            DataTable tables = cdata.GetTablesNames();
-            foreach (DataRow item in tables.Rows)
-            {
-                listTables.Add(item[tables.Columns.IndexOf("TABLE_NAME")].ToString());
-            }
-            return listTables;
-        }
+        #endregion
+
+
+        #region EXCLUDE
 
         public void ExcludeTables(List<string> tableNames)
         {
@@ -144,6 +147,42 @@ namespace Balaio.Controllers
                 }
             }
         }
+
+        #endregion
+
+
+        #region SELECT
+
+        public List<string> GetTablesNamesToList()
+        {
+            List<string> listTables = new List<string>();
+            DataTable tables = cdata.GetTablesNames();
+            foreach (DataRow item in tables.Rows)
+            {
+                listTables.Add(item[tables.Columns.IndexOf("TABLE_NAME")].ToString());
+            }
+            return listTables;
+        }
+
+        public DataTable GetTablesNames()
+        {
+            return cdata.GetTablesNames();
+        }
+
+        #endregion
+
+
+        #region CREATE
+
+        public void CreateTable(string tableName, DataTable col)
+        {
+            if(tableName != "" || tableName != null)
+            {
+                cdata.CreateTable(tableName, col);
+            }
+        }
+
+        #endregion
 
         #endregion
 

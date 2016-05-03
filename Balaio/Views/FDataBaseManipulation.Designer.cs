@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FDataBaseManipulation));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listViewTables = new System.Windows.Forms.ListView();
+            this.dataGridTable = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butAddTable = new System.Windows.Forms.ToolStripButton();
             this.butAddTableTemplate = new System.Windows.Forms.ToolStripButton();
@@ -41,6 +41,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,24 +54,26 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listViewTables);
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridTable);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainer1.Size = new System.Drawing.Size(408, 428);
-            this.splitContainer1.SplitterDistance = 399;
+            this.splitContainer1.Size = new System.Drawing.Size(444, 295);
+            this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 1;
             // 
-            // listViewTables
+            // dataGridTable
             // 
-            this.listViewTables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewTables.Location = new System.Drawing.Point(0, 0);
-            this.listViewTables.Name = "listViewTables";
-            this.listViewTables.Size = new System.Drawing.Size(408, 399);
-            this.listViewTables.TabIndex = 0;
-            this.listViewTables.UseCompatibleStateImageBehavior = false;
-            this.listViewTables.View = System.Windows.Forms.View.Details;
+            this.dataGridTable.AllowUserToAddRows = false;
+            this.dataGridTable.AllowUserToDeleteRows = false;
+            this.dataGridTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridTable.Location = new System.Drawing.Point(0, 0);
+            this.dataGridTable.Name = "dataGridTable";
+            this.dataGridTable.ReadOnly = true;
+            this.dataGridTable.Size = new System.Drawing.Size(444, 266);
+            this.dataGridTable.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -84,7 +87,7 @@
             this.butInsertQuery});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(408, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(444, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -139,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 428);
+            this.ClientSize = new System.Drawing.Size(444, 295);
             this.CloseButton = false;
             this.CloseButtonVisible = false;
             this.Controls.Add(this.splitContainer1);
@@ -152,6 +155,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -166,8 +170,8 @@
         private System.Windows.Forms.ToolStripButton butAddTableTemplate;
         private System.Windows.Forms.ToolStripButton butEditTable;
         private System.Windows.Forms.ToolStripButton butDeleteTable;
-        private System.Windows.Forms.ListView listViewTables;
         private System.Windows.Forms.ToolStripButton butInsertQuery;
+        private System.Windows.Forms.DataGridView dataGridTable;
 
 
     }

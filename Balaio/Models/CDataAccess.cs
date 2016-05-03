@@ -59,6 +59,10 @@ namespace Balaio.Models
 
         #region Create Methods
         
+        public void CreateTable(string tableName, DataTable columns)
+        {
+            string query = "CREATE TABLE";
+        }
 
         #endregion
 
@@ -73,7 +77,12 @@ namespace Balaio.Models
         public DataTable GetTablesNames()
         {
             return execSelect("select * from " + control.DataBaseName + ".information_schema.tables");
-        }    
+        }
+    
+        public DataTable GetTableValues(string tableName)
+        {
+            return execSelect("select * from " + control.DataBaseName + "." + tableName);
+        }
 
         #endregion
             
@@ -147,6 +156,7 @@ namespace Balaio.Models
         }
 
         #endregion
+
 
     }
 }
