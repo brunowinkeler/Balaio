@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using Balaio.Controllers.Utility;
+using Balaio.Controllers;
 
 namespace Balaio.Views
 {
@@ -18,22 +19,22 @@ namespace Balaio.Views
     {
 
         #region Attributes
-
-        private FConfigServer parent;
-
+        private FMainBalaio parent;
+        private CControlData dataControl;
+        private string[] configs;
         #endregion
 
 
         #region Constructor
 
-        public FLoadConfig(FConfigServer p)
+        public FLoadConfig(CControlData c, FMainBalaio p)
         {
             InitializeComponent();
 
             parent = p;
+            dataControl = c;
 
             iniListViewLoad();
-
         }
 
         #endregion
@@ -43,47 +44,55 @@ namespace Balaio.Views
 
         private void iniListViewLoad()
         {
-            listViewLoad.Columns.Clear();
             listViewLoad.Items.Clear();
+            listViewLoad.FullRowSelect = true;
 
-            listViewLoad.Columns.Add("Server");
-            listViewLoad.Columns.Add("DataBase");
-
-            string filename = Directory.GetCurrentDirectory() + "/SavedConfig.txt";
-            string[] configs = CUtil_IO.loadFile(filename);
+            configs = CUtil_IO.LoadFile(CUtil_IO.SavedConnectionsPath);
             if (configs != null)
-            {
                 auxIniListViewLoad(configs);
-            }
         }
 
         private void auxIniListViewLoad(string[] configs)
         {
-            string server = "";
-            string database = "";
+            string dataSource = "";
+            string initialCatalog = "";
+            string integratedSecurity = "";
+            string userID = "";
+
             foreach (var item in configs)
             {
                 string[] split = item.Split(';');
                 foreach (var item2 in split)
                 {
-                    if (item2.Contains("Server"))
+                    if (item2.Contains("Data Source"))
                     {
-                        server = item2.Split('=').Last();
+                        dataSource = item2.Split('=').Last();
                     }
-                    else if (item2.Contains("Database"))
+                    else if (item2.Contains("Initial Catalog"))
                     {
-                        database = item2.Split('=').Last();
+                        initialCatalog = item2.Split('=').Last();
+                    }
+                    else if(item2.Contains("User ID"))
+                    {
+                        userID = item2.Split('=').Last();
+                        integratedSecurity = "false";
+                    }
+                    else if (item2.Contains("Integrated Security"))
+                    {
+                        integratedSecurity = item2.Split('=').Last();
+                        userID = "";
                     }
                 }
 
-                if (server != "" && database != "")
-                {
-                    ListViewItem it = new ListViewItem(server);
-                    it.SubItems.Add(database);
+                ListViewItem it = new ListViewItem(dataSource);
+                it.SubItems.Add(initialCatalog);
+                it.SubItems.Add(integratedSecurity);
+                it.SubItems.Add(userID);
 
-                    listViewLoad.Items.Add(it);
-                }
+                listViewLoad.Items.Add(it);
+
             }
+            listViewLoad.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         #endregion
@@ -91,20 +100,55 @@ namespace Balaio.Views
 
         #region Buttons' Events
 
-        private void butSave_Click(object sender, EventArgs e)
+        private void butCancel_Click(object sender, EventArgs e)
         {
-            if (listViewLoad.SelectedItems != null)
-            {
-
-            }
+            this.Close();
         }
 
         private void butLoad_Click(object sender, EventArgs e)
         {
+            //----------------------------------
+            Cursor.Current = Cursors.WaitCursor;
+            //----------------------------------
 
+            foreach (var item in listViewLoad.Items)
+            {
+                ListViewItem it = item as ListViewItem;
+                if(it.Checked)
+                {
+                    string conn = configs[it.Index];
+
+                    if (dataControl.TestConnection(conn))
+                        parent.iniForms();
+                    else
+                        MessageBox.Show("There's no connection!", "Connection Problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    //----------------------------------
+                    Cursor.Current = Cursors.Default;
+                    //----------------------------------
+
+                    this.Close();
+                }
+            }
         }
 
         #endregion
-        
+
+
+        #region Events - ListView
+        private void listViewLoad_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            foreach (var item in listViewLoad.Items)
+            {
+                ListViewItem lstIt = item as ListViewItem;
+                if (lstIt != e.Item)
+                {
+                    lstIt.Checked = false;
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

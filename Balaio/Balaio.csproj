@@ -67,9 +67,16 @@
     <Compile Include="Controllers\CControlData.cs" />
     <Compile Include="Controllers\Utility\CUtil_ConnectionDataBase.cs" />
     <Compile Include="Controllers\Utility\CUtil_DataGridView.cs" />
+    <Compile Include="Controllers\Utility\CUtil_EncryptDecrypt.cs" />
     <Compile Include="Controllers\Utility\CUtil_IO.cs" />
     <Compile Include="Controllers\Utility\CUtil_ListView.cs" />
     <Compile Include="Models\CDataAccess.cs" />
+    <Compile Include="Views\FAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FAbout.Designer.cs">
+      <DependentUpon>FAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FTreeViewTables.cs">
       <SubType>Form</SubType>
     </Compile>

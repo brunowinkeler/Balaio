@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 
 using Balaio.Models;
+using Balaio.Controllers.Utility;
 
 namespace Balaio.Controllers
 {
@@ -16,12 +17,13 @@ namespace Balaio.Controllers
         #region Attributes
 
         private string strConnection;
-        private string tablesSchema;
         private string serverName;
         private string dataBaseName;
         private string userName;
 
-        private CDataAccess cdata;
+        private Dictionary<string, string> tablesNamesAndSchemas;
+
+        private CDataAccess dataAccess;
 
         #endregion
 
@@ -70,9 +72,9 @@ namespace Balaio.Controllers
         }
 
         [Browsable(false)]
-        public string TablesSchema
+        public Dictionary<string,string> TablesNamesAndSchemas
         {
-            get { return tablesSchema; }
+            get { return tablesNamesAndSchemas; }
         }
 
         #endregion
@@ -87,7 +89,8 @@ namespace Balaio.Controllers
             dataBaseName = "";
             userName = "";
 
-            cdata = new CDataAccess(this);
+            dataAccess = new CDataAccess(this);
+
         }
 
         #endregion
@@ -119,6 +122,17 @@ namespace Balaio.Controllers
             }
         }
 
+        private void getTablesNamesAndSchemas()
+        {
+            DataTable tables = dataAccess.GetTablesNames();
+            foreach (DataRow item in tables.Rows)
+            {
+                string tableName = item[tables.Columns.IndexOf("TABLE_NAME")].ToString();
+                string tableSchema = item[tables.Columns.IndexOf("TABLE_SCHEMA")].ToString();
+                tablesNamesAndSchemas.Add(tableName, tableSchema);
+            }
+        }
+
         #endregion
 
 
@@ -129,7 +143,7 @@ namespace Balaio.Controllers
         public bool TestConnection(string conn)
         {
             StringConnection = conn;
-            return cdata.DataAccessOK;
+            return dataAccess.DataAccessOK;
         }
 
         #endregion
@@ -143,7 +157,7 @@ namespace Balaio.Controllers
             {
                 foreach (var item in tableNames)
                 {
-                    cdata.ExcludeTable(item);
+                    dataAccess.ExcludeTable(item);
                 }
             }
         }
@@ -156,7 +170,7 @@ namespace Balaio.Controllers
         public List<string> GetTablesNamesToList()
         {
             List<string> listTables = new List<string>();
-            DataTable tables = cdata.GetTablesNames();
+            DataTable tables = dataAccess.GetTablesNames();
             foreach (DataRow item in tables.Rows)
             {
                 listTables.Add(item[tables.Columns.IndexOf("TABLE_NAME")].ToString());
@@ -166,7 +180,7 @@ namespace Balaio.Controllers
 
         public DataTable GetTablesNames()
         {
-            return cdata.GetTablesNames();
+            return dataAccess.GetTablesNames();
         }
 
         #endregion
@@ -178,13 +192,27 @@ namespace Balaio.Controllers
         {
             if(tableName != "" || tableName != null)
             {
-                cdata.CreateTable(tableName, col);
+                dataAccess.CreateTable(tableName, col);
+            }
+        }
+
+        #endregion
+
+
+        #region SAVE CONNECTION
+
+        public void SaveConnection(string conn)
+        {
+            if (!CUtil_IO.CompareLineInAFile(CUtil_IO.SavedConnectionsPath, conn))
+            {
+                List<string> connection = new List<string>();
+                connection.Add(conn);
+                CUtil_IO.SaveFile(CUtil_IO.SavedConnectionsPath, connection);
             }
         }
 
         #endregion
 
         #endregion
-
     }
 }

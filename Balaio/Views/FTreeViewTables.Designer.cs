@@ -34,6 +34,7 @@
             // treeViewTables
             // 
             this.treeViewTables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewTables.Location = new System.Drawing.Point(0, 0);
             this.treeViewTables.Name = "treeViewTables";
             this.treeViewTables.Size = new System.Drawing.Size(242, 365);

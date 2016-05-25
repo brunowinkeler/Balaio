@@ -16,7 +16,7 @@ namespace Balaio.Models
 
         #region Attributes
 
-        private CControlData control;
+        private CControlData dataControl;
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace Balaio.Models
             {
                 try
                 {
-                    SqlConnection connection = new SqlConnection(control.StringConnection);
+                    SqlConnection connection = new SqlConnection(dataControl.StringConnection);
                     connection.Open();
                     connection.Close();
                     return true;
@@ -48,7 +48,7 @@ namespace Balaio.Models
 
         public CDataAccess(CControlData c)
         {
-            control = c;
+            dataControl = c;
         }
 
         #endregion
@@ -76,12 +76,12 @@ namespace Balaio.Models
 
         public DataTable GetTablesNames()
         {
-            return execSelect("select * from " + control.DataBaseName + ".information_schema.tables");
+            return execSelect("select * from " + dataControl.DataBaseName + ".information_schema.tables");
         }
     
         public DataTable GetTableValues(string tableName)
         {
-            return execSelect("select * from " + control.DataBaseName + "." + tableName);
+            return execSelect("select * from " + dataControl.DataBaseName + "." + tableName);
         }
 
         #endregion
@@ -123,12 +123,12 @@ namespace Balaio.Models
 
         private SqlConnection getConnection()
         {
-            if (control == null) throw new ArgumentNullException();
+            if (dataControl == null) throw new ArgumentNullException();
 
             SqlConnection connection;
             try
             {
-                connection = new SqlConnection(control.StringConnection);
+                connection = new SqlConnection(dataControl.StringConnection);
                 return connection;
             }
             catch (SqlException e)

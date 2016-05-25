@@ -17,6 +17,7 @@ namespace Balaio.Views
 {
     public partial class FDataBaseManipulation : DockContent
     {
+
         #region Attributes
 
         CControlData dataControl;
@@ -65,7 +66,6 @@ namespace Balaio.Views
         }
 
         #endregion
-
 
     }
 }

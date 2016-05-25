@@ -23,6 +23,9 @@ namespace Balaio.Views
         private FDataBaseManipulation fdata;
         private FTreeViewTables Ftables;
 
+        private FLoadConfig fload;
+        private FAbout fabout;
+
         private CControlData dataControl;
 
         #endregion
@@ -35,9 +38,11 @@ namespace Balaio.Views
             InitializeComponent();
 
             var theme = new VS2012LightTheme();
+            //var theme = new VS2013BlueTheme();
             this.dockPanelMain.Theme = theme;
 
             dataControl = new CControlData();
+
         }
 
         #endregion
@@ -53,6 +58,18 @@ namespace Balaio.Views
         #endregion
 
 
+        public void iniForms()
+        {
+            fdata = new FDataBaseManipulation(dataControl);
+            fdata.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+
+            fconfig = new FConfigServer(dataControl);
+            fconfig.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
+
+            Ftables = new FTreeViewTables(dataControl);
+            Ftables.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+        }
+
         #region Events
 
         #region ToolStripMenu
@@ -62,14 +79,8 @@ namespace Balaio.Views
             string conn = CUtil_ConnectionDataBase.GetConnectionString();
             if (dataControl.TestConnection(conn))
             {
-                fdata = new FDataBaseManipulation(dataControl);
-                fdata.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.Document);
-
-                fconfig = new FConfigServer(dataControl);
-                fconfig.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.DockRightAutoHide);
-
-                Ftables = new FTreeViewTables(dataControl);
-                Ftables.Show(MainDock, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+                iniForms();
+                dataControl.SaveConnection(conn);
             }
             else
             {
@@ -77,7 +88,23 @@ namespace Balaio.Views
             }
         }
 
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fload = new FLoadConfig(dataControl, this);
+            fload.ShowDialog();
+        }
+        
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fabout = new FAbout();
+            fabout.ShowDialog();
+        }
+
         #endregion
+
+        
+
+        
 
         #endregion
 
